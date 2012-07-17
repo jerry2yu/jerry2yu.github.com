@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | 苹果园]]></title>
+  <link href="http://jerry2yu.github.com/categories/git/atom.xml" rel="self"/>
+  <link href="http://jerry2yu.github.com/"/>
+  <updated>2012-07-16T22:27:42-03:00</updated>
+  <id>http://jerry2yu.github.com/</id>
+  <author>
+    <name><![CDATA[大苹果]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Deleting empty folders in Git]]></title>
+    <link href="http://jerry2yu.github.com/2011/10/24/deleting-empty-folders-in-git/"/>
+    <updated>2011-10-24T09:33:00-03:00</updated>
+    <id>http://jerry2yu.github.com/2011/10/24/deleting-empty-folders-in-git</id>
+    <content type="html"><![CDATA[<p>You may have encountered following error when you are trying to delete an empty folder in your git working copy.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ls
+</span><span class='line'>hello.py    empty_dir
+</span><span class='line'>$ ls empty_dir
+</span><span class='line'>$ git rm empty_dir
+</span><span class='line'>fatal: pathspec 'empty_dir/' did not match any files</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The issue is that git only tracks files, but not directories. You should run following commands to remove the folder:</p>
+
+<p>Warning: the clean command reomves any files that are not tracked in current working copy</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clean -fd
+</span><span class='line'>Removing empty_dir/
+</span><span class='line'>$ ls
+</span><span class='line'>hello.py</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

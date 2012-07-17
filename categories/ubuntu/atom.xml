@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ubuntu | 苹果园]]></title>
+  <link href="http://jerry2yu.github.com/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://jerry2yu.github.com/"/>
+  <updated>2012-07-16T22:27:42-03:00</updated>
+  <id>http://jerry2yu.github.com/</id>
+  <author>
+    <name><![CDATA[大苹果]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Monitor hardware temperatures with indicator-sensors on Ubuntu 11.10]]></title>
+    <link href="http://jerry2yu.github.com/2011/11/01/monitor-hardware-temperatures-with-indicator-sensors-on-ubuntu-11-dot-10/"/>
+    <updated>2011-11-01T13:44:00-03:00</updated>
+    <id>http://jerry2yu.github.com/2011/11/01/monitor-hardware-temperatures-with-indicator-sensors-on-ubuntu-11-dot-10</id>
+    <content type="html"><![CDATA[<p>Indicator-Sensors is a temperature monitor applet with Ubuntu AppIndicator support that displays the CPU, Motherboard temperature, Fan speed, etc. on Ubuntu panel.</p>
+
+<h2>Steps to install Indicator-Sensors</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo add-apt-repository ppa:alexmurray/indicator-sensors
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install indicator-sensors</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>To have Indicator-Sensors start automatically when you log in, launch "Startup Applications", add a new item and under command enter: "indicator-sensors".</p>
+
+<p>I have indicator-sensors successfully installed on my Lenovo Thinkpad T61p running Ubuntu 11.10.</p>
+
+<p>For more information, please see <a href="http://www.webupd8.org/2011/04/indicator-sensors-displays-cpu.html">this page</a></p>
+]]></content>
+  </entry>
+  
+</feed>
