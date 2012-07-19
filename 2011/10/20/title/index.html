@@ -382,8 +382,124 @@ can use rbenv</p>
 </section>
 
 
+<!--
+JSON-P Google Plus fetcher for Octopress
+(c) Jolam Jiang // MIT License
+
+You can see the tutorial of adding sidebar here:
+http://bandj.us/jo/blog/blog/2011/12/03/adding-google-plus-sidebar-to-octopress/
+-->
+
+<section>
+  <!-- load jquery -->
+  <script type="text/javascript" src="https://www.google.com/jsapi?key=AIzaSyCqR5_JXEJlRpJJmjLwiRxNR2M5xyxEOBI"></script>
+  <script type="text/javascript">
+    google.load("jquery", "1.7.1");
+  </script>
+  <!-- load jquery end -->
+  <script type="text/javascript">
+
+    $.noConflict();
+    jQuery(document).ready(function(){
+      plusLoadingStart();
+    });
+    jQuery.noConflict();
+
+    function plusLoadingStart() {
+      jQuery("#gplus_sidebar").css("display", "none");
+      getJSON();
+    }
+
+    function getJSON() {
+        jQuery.getJSON('https://www.googleapis.com/plus/v1/people/107180662229480154323?fields=aboutMe%2CdisplayName%2Cimage&pp=1&key=AIzaSyCqR5_JXEJlRpJJmjLwiRxNR2M5xyxEOBI&callback=?', function(resp){
+          //updateProfile(resp);
+        });
+        jQuery.getJSON('https://www.googleapis.com/plus/v1/people/107180662229480154323/activities/public?alt=json&maxResults=4&fields=items&pp=1&key=AIzaSyCqR5_JXEJlRpJJmjLwiRxNR2M5xyxEOBI&callback=?', function(resp){
+          updatePosts(resp);
+        });
+      jQuery("#gplus_sidebar").css("display","block");
+    }
+
+    function updateProfile(resp) {
+      jQuery('#gplus_sidebar_profile_displayName').html(resp.displayName);
+      jQuery('#gplus_sidebar_profile_aboutMe').html(resp.aboutMe);
+      jQuery('#gplus_sidebar_profile_img').attr("src", resp.image.url);
+    }
+
+    function updatePosts(resp) {
+      var content = '';
+      for(var i = 0; i < resp.items.length; i++) {
+        var item = resp.items[i];
+        attachments = item.object.attachments;
+        content += appendLi(item.title, item.url, item.published, attachments);
+      }
+      jQuery('#gplus_sidebar_posts_ul').html(content);
+    }
+
+    function appendLi(title, url, time, attachments) {
+      if(title.length > 130) {
+        title = title.substring(0, 130);
+      }
+      var reg = /[\r\n][\r\n]/g;
+      title = title.replace(reg, "");
+      reg = /[\r\n]/g;
+      if(attachments == null) {
+        return '<li><p><a href="' + url + '">' + title + '</a> </p><p class="time_and_attachment">' + time.substring(0, 10) + '</p></li>';
+      } else {
+        attach_url = attachments[0].url;
+        attach_url = attach_url.replace(reg, "");
+        return '<li><p><a href="' + url + '">' + title + '</a></p><p class="time_and_attachment">' + time.substring(0, 10) + '<span class="attachment_span"><a href="' + attach_url + '">[attachment]</a></span></p></li>';
+      }
+    }
+
+  </script>
+  <style>
+    #gplus_sidebar_profile {
+      display: block;
+    }
+    #gplus_sidebar_posts a:link, #gplus_sidebar_posts a:visited  {
+      display: block;
+      text-decoration: none;
+    }
+    #gplus_sidebar_profile_img {
+      margin-top: .6em !important;
+    }
+    #gplus_sidebar_profile p {
+      margin-bottom: .1em !important;
+    }
+    #gplus_sidebar_posts p {
+      margin-bottom: .2em !important; 
+    }
+    #gplus_sidebar_posts .attachment_span {
+      float : right;
+    }
+    #gplus_sidebar_posts .time_and_attachment {
+      margin-top: .5em !important;
+      font-size: 60%;
+    }
+  </style>
+  <div id="gplus_sidebar_posts">
+    <h1>Recent G+ Posts</h1>
+    <ul id="gplus_sidebar_posts_ul" class="recent_posts">
+    </ul>
+  </div>
+</section>
 
 
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/107180662229480154323?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/categories/education' style='font-size: 120.0%'>education</a>&nbsp;&nbsp;<a href='/categories/general' style='font-size: 120.0%'>General</a>&nbsp;&nbsp;<a href='/categories/git' style='font-size: 120.0%'>git</a>&nbsp;&nbsp;<a href='/categories/programming' style='font-size: 120.0%'>programming</a>&nbsp;&nbsp;<a href='/categories/ubuntu' style='font-size: 120.0%'>ubuntu</a>&nbsp;&nbsp;</span>
+</section>
 
   
 </aside>
